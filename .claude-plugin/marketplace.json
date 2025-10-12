@@ -1,0 +1,19 @@
+{
+  "name": "superclaude-marketplace",
+  "version": "1.0.0",
+  "description": "Official SuperClaude Framework plugin marketplace",
+  "repository": "https://github.com/SuperClaude-Org/superclaude-plugin-marketplace",
+  "plugins": {
+    "superclaude-framework": {
+      "source": "github",
+      "repo": "SuperClaude-Org/SuperClaude_Framework",
+      "path": ".",
+      "version": "5.0.0",
+      "installCommand": "/plugin install superclaude-framework@superclaude-marketplace"
+    }
+  },
+  "categories": {
+    "core": ["superclaude-framework"],
+    "extensions": []
+  }
+}

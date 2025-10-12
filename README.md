@@ -68,15 +68,38 @@
 
 SuperClaude is a **meta-programming configuration framework** that transforms Claude Code into a structured development platform through behavioral instruction injection and component orchestration. It provides systematic workflow automation with powerful tools and intelligent agents.
 
-## ⚡ **Quick Installation**
+## Installation
 
-### **Choose Your Installation Method**
+### 🚀 Quick Start (Recommended)
 
-| Method | Command | Best For |
-|:------:|---------|----------|
-| **🐍 pipx** | `pipx install SuperClaude && pipx upgrade SuperClaude && SuperClaude install` | **✅ Recommended** - Linux/macOS |
-| **📦 pip** | `pip install SuperClaude && pip upgrade SuperClaude && SuperClaude install` | Traditional Python environments |
-| **🌐 npm** | `npm install -g @bifrost_inc/superclaude && superclaude install` | Cross-platform, Node.js users |
+SuperClaude is now available as an official Claude Code plugin:
+
+```bash
+# In Claude Code terminal
+/plugin marketplace add SuperClaude-Org/superclaude-plugin-marketplace
+/plugin install superclaude-framework
+```
+
+That's it! All 25 commands, 15 agents, and 8 MCP servers are now available.
+
+### 📦 Alternative Installation (Legacy)
+
+For users on Claude Code < v2.0.12:
+
+```bash
+pipx install SuperClaude
+SuperClaude install
+```
+
+### 🔄 Migrating from v4.x
+
+If you're upgrading from SuperClaude v4.x:
+
+```bash
+python3 -m SuperClaude.scripts.migrate-to-plugin --migrate
+```
+
+See [Migration Guide](Docs/Migration/v4-to-v5-plugin.md) for details.
 
 </div>
 

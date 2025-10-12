@@ -1,0 +1,26 @@
+{
+  "name": "superclaude",
+  "version": "5.0.0",
+  "description": "Meta-programming configuration framework that transforms Claude Code into a structured development platform with 25 commands, 15 specialized agents, and 8 MCP integrations",
+  "author": {
+    "name": "SuperClaude-Org",
+    "email": "[email protected]",
+    "url": "https://github.com/SuperClaude-Org"
+  },
+  "homepage": "https://superclaude.org/",
+  "repository": "https://github.com/SuperClaude-Org/SuperClaude_Framework",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "development-framework",
+    "ai-coding",
+    "mcp-integration",
+    "workflow-automation",
+    "code-analysis",
+    "deep-research"
+  ],
+  "commands": "./commands/",
+  "agents": "./agents/",
+  "hooks": "./hooks/hooks.json",
+  "mcpServers": "./.mcp.json"
+}

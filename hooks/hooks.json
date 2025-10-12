@@ -1,0 +1,60 @@
+{
+  "version": "1.0.0",
+  "hooks": {
+    "pre-write": {
+      "name": "Format Before Write",
+      "description": "Auto-format code before writing to files",
+      "enabled": true,
+      "actions": [
+        {
+          "name": "python-formatter",
+          "condition": "file.extension === '.py'",
+          "command": "black {file}",
+          "continueOnError": false
+        },
+        {
+          "name": "javascript-formatter",
+          "condition": "file.extension === '.js' || file.extension === '.jsx'",
+          "command": "prettier --write {file}",
+          "continueOnError": false
+        },
+        {
+          "name": "go-formatter",
+          "condition": "file.extension === '.go'",
+          "command": "gofmt -w {file}",
+          "continueOnError": false
+        }
+      ]
+    },
+    "post-write": {
+      "name": "Run Tests After Write",
+      "description": "Automatically run tests after code changes",
+      "enabled": false,
+      "actions": [
+        {
+          "name": "pytest",
+          "condition": "file.path.includes('src/') && file.extension === '.py'",
+          "command": "pytest tests/",
+          "continueOnError": true
+        }
+      ]
+    },
+    "pre-commit": {
+      "name": "Pre-Commit Checks",
+      "description": "Run linters and tests before commits",
+      "enabled": true,
+      "actions": [
+        {
+          "name": "lint",
+          "command": "npm run lint",
+          "continueOnError": false
+        },
+        {
+          "name": "type-check",
+          "command": "npm run type-check",
+          "continueOnError": false
+        }
+      ]
+    }
+  }
+}

@@ -15,7 +15,7 @@ fi
 
 # Test 2: Commands Directory
 echo "Test 2: Commands Directory and Files"
-if [ -d "commands" ] && [ -f "commands/implement.md" ] && [ -f "commands/design.md" ]; then
+if [ -d "commands/sc" ] && [ -f "commands/sc/implement.md" ] && [ -f "commands/sc/design.md" ]; then
     echo "  ✅ Commands directory and key files found"
 else
     echo "  ❌ Commands directory or key files not found"

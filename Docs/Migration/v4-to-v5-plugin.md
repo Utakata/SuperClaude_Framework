@@ -47,7 +47,29 @@ python3 migrate-to-plugin.py --rollback
 ```
 
 ## Troubleshooting
-[Detailed troubleshooting guide]
+
+### Issue: `/plugin install` fails
+- **Cause**: This can happen if the marketplace was not added correctly or if there's a network issue.
+- **Solution**:
+  1. Ensure you have a stable internet connection.
+  2. Verify that the marketplace was added correctly by running `/plugin marketplace list`.
+  3. Try removing and re-adding the marketplace:
+     ```
+     /plugin marketplace remove SuperClaude-Org/superclaude-plugin-marketplace
+     /plugin marketplace add SuperClaude-Org/superclaude-plugin-marketplace
+     ```
+
+### Issue: Old commands are still showing up
+- **Cause**: The migration script may not have fully cleaned up the old files.
+- **Solution**:
+  1. Manually delete the old command files from `~/.claude/commands/sc/`.
+  2. Restart Claude Code.
+
+### Issue: MCP Servers are not connecting
+- **Cause**: API keys may not be correctly set as environment variables.
+- **Solution**:
+  1. Ensure that `TAVILY_API_KEY`, `FIRECRAWL_API_KEY`, etc., are set in your shell's startup file (e.g., `.bashrc`, `.zshrc`).
+  2. Restart your terminal and Claude Code to ensure the environment variables are loaded.
 
 ## Support Period
 - v4.x: Supported until April 2025 (6-month support window)

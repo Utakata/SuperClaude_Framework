@@ -57,6 +57,22 @@ SuperClaude_Framework/
 
 ---
 
+## 🔌 Recommended MCP Servers
+
+SuperClaude can be extended with community-managed MCP servers. Use the new `/sc:mcp-setup` command to get started.
+
+```bash
+# List recommended MCP servers
+/sc:mcp-setup --list
+
+# Get setup guide for a specific server
+/sc:mcp-setup --install ollama-mcp
+```
+
+For a detailed guide, see the [MCP Setup Documentation](./docs/Reference/mcp-setup.md).
+
+---
+
 ## 📦 Quick Installation
 
 SuperClaude is a meta-programming configuration framework that transforms Claude Code into a structured development platform through behavioral instruction injection and component orchestration.

@@ -12,12 +12,13 @@ from typing import Dict, Optional
 from datetime import datetime
 from .ui import display_info, display_success, display_warning, Colors
 from .logger import get_logger
+from .paths import get_home_directory
 
 
 def _get_env_tracking_file() -> Path:
     """Get path to environment variable tracking file"""
     from .. import DEFAULT_INSTALL_DIR
-    install_dir = Path.home() / ".claude"
+    install_dir = get_home_directory() / ".claude"
     install_dir.mkdir(exist_ok=True)
     return install_dir / "superclaude_env_vars.json"
 
@@ -90,7 +91,7 @@ def detect_shell_config() -> Optional[Path]:
     Returns:
         Path to the shell configuration file, or None if not found
     """
-    home = Path.home()
+    home = get_home_directory()
     
     # Check in order of preference
     configs = [
@@ -340,7 +341,7 @@ def cleanup_environment_variables(env_vars_to_remove: Dict[str, str], create_res
 def _create_restore_script(env_vars: Dict[str, str]) -> Optional[Path]:
     """Create a script to restore environment variables"""
     try:
-        home = Path.home()
+        home = get_home_directory()
         if os.name == 'nt':  # Windows
             script_path = home / "restore_superclaude_env.bat"
             with open(script_path, 'w') as f:
@@ -423,7 +424,7 @@ def create_env_file(api_keys: Dict[str, str], env_file_path: Optional[Path] = No
         True if .env file was created successfully, False otherwise
     """
     if env_file_path is None:
-        env_file_path = Path.home() / ".env"
+        env_file_path = get_home_directory() / ".env"
     
     logger = get_logger()
     
@@ -466,3 +467,47 @@ def create_env_file(api_keys: Dict[str, str], env_file_path: Optional[Path] = No
         logger.error(f"Failed to create .env file: {e}")
         display_warning(f"Could not create .env file: {e}")
         return False
+
+
+def check_research_prerequisites() -> tuple[bool, list[str]]:
+    """
+    Check if deep research prerequisites are met
+
+    Returns:
+        Tuple of (success: bool, warnings: List[str])
+    """
+    warnings = []
+    logger = get_logger()
+
+    # Check Tavily API key
+    if not os.environ.get("TAVILY_API_KEY"):
+        warnings.append(
+            "TAVILY_API_KEY not set - Deep research web search will not work\n"
+            "Get your key from: https://app.tavily.com"
+        )
+        logger.warning("TAVILY_API_KEY not found in environment")
+    else:
+        logger.info("Found TAVILY_API_KEY in environment")
+
+    # Check Node.js for MCP
+    import shutil
+    if not shutil.which("node"):
+        warnings.append(
+            "Node.js not found - Required for Tavily MCP\n"
+            "Install from: https://nodejs.org"
+        )
+        logger.warning("Node.js not found - required for Tavily MCP")
+    else:
+        logger.info("Node.js found")
+
+    # Check npm
+    if not shutil.which("npm"):
+        warnings.append(
+            "npm not found - Required for MCP server installation\n"
+            "Usually installed with Node.js"
+        )
+        logger.warning("npm not found - required for MCP installation")
+    else:
+        logger.info("npm found")
+
+    return len(warnings) == 0, warnings

@@ -15,12 +15,5 @@
   "categories": {
     "core": ["superclaude-framework"],
     "extensions": []
-  },
-  "recommendedMcpServers": {
-    "ollama-mcp": {
-      "description": "Run local LLMs with Ollama",
-      "source": "github",
-      "repo": "ollama/ollama-mcp"
-    }
   }
 }

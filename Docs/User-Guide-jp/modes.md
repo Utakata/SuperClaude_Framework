@@ -359,6 +359,7 @@ Standard Approach: Consistent, professional baseline for all tasks
 
 # Add reasoning transparency to debugging
 # 認証問題を透明な推理でデバッグ
+/sc:fix auth-issue --introspect
 
 # Enable task management for simple operations
 # システマチックなタスク管理でスタイルファイルを更新

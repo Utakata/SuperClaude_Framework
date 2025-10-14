@@ -363,6 +363,7 @@ Standard Approach: Consistent, professional baseline for all tasks
 
 # Enable task management for simple operations
 # システマチックなタスク管理でスタイルファイルを更新
+/sc:improve styles.css --task-manage
 ```
 
 ### モードの境界と優先順位

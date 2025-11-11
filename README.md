@@ -14,7 +14,7 @@
 <a href="https://github.com/SuperClaude-Org/SuperQwen_Framework" target="_blank">
   <img src="https://img.shields.io/badge/Try-SuperQwen_Framework-orange" alt="Try SuperQwen Framework"/>
 </a>
-  <img src="https://img.shields.io/badge/version-4.2.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-4.1.6-blue" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
 </p>
@@ -62,12 +62,12 @@
 
 ## 📊 **Framework Statistics**
 
-| **Plugins** | **Agents** | **Modes** | **MCP Servers** |
+| **Commands** | **Agents** | **Modes** | **MCP Servers** |
 |:------------:|:----------:|:---------:|:---------------:|
-| **3** | **16** | **7** | **8** |
-| Plugin Commands | Specialized AI | Behavioral | Integrations |
+| **27** | **16** | **7** | **8** |
+| Slash Commands | Specialized AI | Behavioral | Integrations |
 
-Three core plugins: **PM Agent** (orchestration), **Research** (web search), **Index** (context optimization).
+Core workflows: **PM Agent** (orchestration), **Research** (web search), **Index** (context optimization), **Analysis**, **Implementation**, and more.
 
 </div>
 
@@ -100,26 +100,42 @@ Claude Code is a product built and maintained by [Anthropic](https://www.anthrop
 
 ## ⚡ **Quick Installation**
 
-### **Project-Local Plugin (Recommended)**
+### **Current Stable Version (v4.1.6)**
 
-SuperClaude v2.0+ uses **TypeScript plugins** with project-local auto-detection:
+> **⚠️ IMPORTANT NOTE**: The README previously described a TypeScript plugin system that is **not yet available**.
+> This is a planned feature for v5.0. The instructions below reflect the **actual v4.1.6 installation method**.
+
+SuperClaude v4.1.6 uses **slash commands** installed via Python package:
 
 ```bash
-# Clone repository
+# Option 1: Install via pip (recommended)
+pip install superclaude
+
+# Option 2: Install from source
 git clone https://github.com/SuperClaude-Org/SuperClaude_Framework.git
 cd SuperClaude_Framework
+./install.sh
 
-# Start Claude Code in this directory
-claude
+# Verify installation
+superclaude --version
 ```
 
-**That's it!** `.claude-plugin/` is auto-detected and PM Agent activates on session start.
+**After installation**, SuperClaude commands are available as `/sc:*` commands in Claude Code:
+
+```bash
+# Available commands (27 total)
+/sc:implement    # Feature implementation
+/sc:analyze      # Code analysis
+/sc:test         # Testing workflows
+/sc:research     # Web research
+# ... and 23 more commands
+```
 
 **Key Features**:
-- ✅ **Zero Install**: No copying, no configuration
-- ✅ **Hot Reload**: Edit TypeScript → Save → Instant reflection
-- ✅ **Auto-Activation**: PM Agent starts automatically (SessionStart hook)
-- ✅ **Safe Development**: Separate sandbox from global Claude Code
+- ✅ **Slash Commands**: Traditional `.claude/commands/` architecture
+- ✅ **Python Package**: Install via pip or install.sh
+- ✅ **27 Commands**: Full workflow automation
+- ✅ **MCP Integration**: Optional performance enhancement
 
 ### **Enhanced Performance (Optional MCPs)**
 
@@ -146,58 +162,54 @@ For **2-3x faster** execution and **30-50% fewer tokens**, optionally install MC
 </div>
 
 <details>
-<summary><b>⚠️ IMPORTANT: Upgrading from SuperClaude V1.x (Slash Commands)</b></summary>
+<summary><b>🚀 Coming in V5.0: TypeScript Plugin System (Planned)</b></summary>
 
-**V2.0 introduces breaking changes - migration from slash commands to TypeScript plugins:**
+**Status**: In development, no ETA
 
-```bash
-# 1. Remove old slash commands (if installed)
-rm -rf ~/.claude/commands/sc/
+The next major version will introduce a TypeScript plugin architecture:
 
-# 2. Use new plugin (project-local)
-cd SuperClaude_Framework
-claude  # .claude-plugin/ auto-detected
-```
+**Planned Features:**
+- TypeScript plugins with hot reload support
+- Project-local auto-detection (`.claude-plugin/`)
+- Auto-activation via SessionStart hook
+- Simplified command structure: `/pm`, `/research`, `/index-repo`
+- Zero-install development workflow
 
-**What's New in V2.0:**
-- ✅ TypeScript plugins (hot reload support)
-- ✅ Project-local detection (zero install)
-- ✅ Auto-activation via SessionStart hook
-- ✅ 3 core plugins: PM Agent, Research, Index
-- ✅ Confidence-driven workflow (≥90% threshold, Precision/Recall 1.0)
+**Current Status:**
+- Proposal documented in issue #419
+- Not yet implemented
+- V4.1.6 uses traditional slash commands
 
-**Migration Notes:**
-- Old: `/sc:pm`, `/sc:research`, `/sc:index-repo` (27 commands)
-- New: `/pm`, `/research`, `/index-repo` (3 plugin commands)
-- Installation: Global `~/.claude/commands/` → Project-local `.claude-plugin/`
-- Just `cd` to project directory and run `claude`
+**Why this note exists:**
+Issue #474 reported that the README documented this future system as if it were already available,
+causing confusion and wasted time for users. This section clarifies the current state.
 
 </details>
 
 <details>
 <summary><b>💡 Troubleshooting</b></summary>
 
-**Plugin not loading?**
+**Commands not working (/sc:* commands)?**
 ```bash
-# Verify you're in the project directory
-pwd  # Should show: /path/to/SuperClaude_Framework
+# Verify installation
+superclaude --version
 
-# Check .claude-plugin/ exists
-ls .claude-plugin/plugin.json
+# Check installed commands
+ls ~/.claude/commands/sc/
 
-# Restart Claude Code in this directory
-claude
+# Reinstall if needed
+pip install --force-reinstall superclaude
 ```
 
-**Commands not working (/pm, /research, /index-repo)?**
-- Ensure you started `claude` from the SuperClaude_Framework directory
-- Check for errors in Claude Code output
-- Verify `.claude-plugin/plugin.json` has correct structure
+**Installation fails?**
+- Try using virtual environment: `python -m venv venv && source venv/bin/activate`
+- Use pipx for isolated install: `pipx install superclaude`
+- Check Python version: Requires Python 3.10+
 
-**Hot reload not working?**
-- Edit `.claude-plugin/pm/index.ts`
-- Save file
-- Changes should reflect immediately (no restart needed)
+**MCP servers not connecting?**
+- Follow airis-mcp-gateway setup: https://github.com/agiletec-inc/airis-mcp-gateway
+- Verify Claude Code can access MCP servers
+- Check `docs/mcp/mcp-integration-policy.md` for configuration
 
 **Development mode (for contributors):**
 ```bash
@@ -270,9 +282,9 @@ uv run pytest
 
 <div align="center">
 
-## 🎉 **What's New in V2.0**
+## 🎉 **What's New in V4.1.6**
 
-> *Version 2.0 brings architectural transformation: migration from 27 slash commands to 3 TypeScript plugins with hot reload and auto-activation.*
+> *Version 4.1.6 brings enhanced workflow automation with 27 specialized slash commands and optional MCP server integration.*
 
 <table>
 <tr>
@@ -290,13 +302,13 @@ uv run pytest
 </td>
 <td width="50%">
 
-### 🔥 **TypeScript Plugins**
-**3 core plugins** with hot reload:
+### 🔥 **Slash Command System**
+**27 specialized commands** for complete workflows:
 - **PM Agent**: Confidence-driven orchestration (≥90% threshold)
 - **Research**: Deep web search with adaptive planning
 - **Index**: 94% token reduction (58K → 3K)
-- Auto-activation via SessionStart hook
-- Edit → Save → Instant reflection (no restart)
+- **Analysis**: Code quality, security, performance
+- **Implementation**: Feature development workflows
 
 </td>
 </tr>

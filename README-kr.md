@@ -5,7 +5,7 @@
 ### **Claude Code를 구조화된 개발 플랫폼으로 변환**
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-4.1.5-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-4.1.6-blue" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
 </p>
@@ -56,8 +56,10 @@
 
 | **명령어 수** | **에이전트** | **모드** | **MCP 서버** |
 |:------------:|:----------:|:---------:|:---------------:|
-| **21** | **14** | **5** | **6** |
+| **27** | **16** | **7** | **8** |
 | 슬래시 명령어 | 전문 AI | 작동 모드 | 통합 서비스 |
+
+핵심 워크플로우: **PM Agent**(오케스트레이션), **Research**(웹 검색), **Index**(컨텍스트 최적화), **Analysis**, **Implementation** 등.
 
 </div>
 
@@ -71,13 +73,42 @@ SuperClaude는 **메타프로그래밍 설정 프레임워크**로, 동작 지�
 
 ## ⚡ **빠른 설치**
 
-### **설치 방법 선택**
+### **현재 안정 버전 (v4.1.6)**
 
-| 방법 | 명령어 | 최적 사용처 |
-|:------:|---------|----------|
-| **🐍 pipx** | `pipx install SuperClaude && pipx upgrade SuperClaude && SuperClaude install` | **✅ 권장** - Linux/macOS |
-| **📦 pip** | `pip install SuperClaude && pip upgrade SuperClaude && SuperClaude install` | 기존 Python 환경 |
-| **🌐 npm** | `npm install -g @bifrost_inc/superclaude && superclaude install` | 크로스 플랫폼, Node.js 사용자 |
+> **⚠️ 중요 공지**: 이전 README에는 **아직 사용할 수 없는** TypeScript 플러그인 시스템이 설명되어 있었습니다.
+> 이는 v5.0에서 계획된 기능입니다. 아래 지침은 **실제 v4.1.6 설치 방법**을 반영합니다.
+
+SuperClaude v4.1.6은 Python 패키지를 통해 설치되는 **슬래시 명령어**를 사용합니다:
+
+```bash
+# 옵션 1: pip를 통한 설치 (권장)
+pip install superclaude
+
+# 옵션 2: 소스에서 설치
+git clone https://github.com/SuperClaude-Org/SuperClaude_Framework.git
+cd SuperClaude_Framework
+./install.sh
+
+# 설치 확인
+superclaude --version
+```
+
+**설치 후**, SuperClaude 명령어는 Claude Code에서 `/sc:*` 명령어로 사용할 수 있습니다:
+
+```bash
+# 사용 가능한 명령어 (총 27개)
+/sc:implement    # 기능 구현
+/sc:analyze      # 코드 분석
+/sc:test         # 테스트 워크플로우
+/sc:research     # 웹 리서치
+# ... 기타 23개 명령어
+```
+
+**주요 기능**:
+- ✅ **슬래시 명령어**: 기존 `.claude/commands/` 아키텍처
+- ✅ **Python 패키지**: pip 또는 install.sh를 통한 설치
+- ✅ **27개 명령어**: 완전한 워크플로우 자동화
+- ✅ **MCP 통합**: 선택적 성능 향상
 
 </div>
 

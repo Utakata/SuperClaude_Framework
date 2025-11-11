@@ -5,7 +5,7 @@
 ### **Claude Codeを構造化開発プラットフォームに変換**
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-4.1.5-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-4.1.6-blue" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
 </p>
@@ -53,8 +53,10 @@
 
 | **コマンド数** | **エージェント** | **モード** | **MCPサーバー** |
 |:------------:|:----------:|:---------:|:---------------:|
-| **21** | **14** | **5** | **6** |
+| **27** | **16** | **7** | **8** |
 | スラッシュコマンド | 専門AI | 動作モード | 統合サービス |
+
+コアワークフロー：**PM Agent**（オーケストレーション）、**Research**（ウェブ検索）、**Index**（コンテキスト最適化）、**Analysis**、**Implementation**など。
 
 </div>
 
@@ -68,13 +70,42 @@ SuperClaudeは**メタプログラミング設定フレームワーク**で、�
 
 ## ⚡ **クイックインストール**
 
-### **インストール方法を選択**
+### **現在の安定版（v4.1.6）**
 
-| 方法 | コマンド | 最適な用途 |
-|:------:|---------|----------|
-| **🐍 pipx** | `pipx install SuperClaude && pipx upgrade SuperClaude && SuperClaude install` | **✅ 推奨** - Linux/macOS |
-| **📦 pip** | `pip install SuperClaude && pip upgrade SuperClaude && SuperClaude install` | 従来のPython環境 |
-| **🌐 npm** | `npm install -g @bifrost_inc/superclaude && superclaude install` | クロスプラットフォーム、Node.jsユーザー |
+> **⚠️ 重要な注意**: 以前のREADMEには、**まだ利用できない**TypeScriptプラグインシステムが記載されていました。
+> これはv5.0で予定されている機能です。以下の手順は**実際のv4.1.6インストール方法**を反映しています。
+
+SuperClaude v4.1.6は、Pythonパッケージ経由でインストールされる**スラッシュコマンド**を使用します：
+
+```bash
+# オプション1：pip経由でインストール（推奨）
+pip install superclaude
+
+# オプション2：ソースからインストール
+git clone https://github.com/SuperClaude-Org/SuperClaude_Framework.git
+cd SuperClaude_Framework
+./install.sh
+
+# インストールの確認
+superclaude --version
+```
+
+**インストール後**、SuperClaudeコマンドはClaude Codeで`/sc:*`コマンドとして使用できます：
+
+```bash
+# 利用可能なコマンド（全27個）
+/sc:implement    # 機能実装
+/sc:analyze      # コード分析
+/sc:test         # テストワークフロー
+/sc:research     # ウェブリサーチ
+# ... その他23個のコマンド
+```
+
+**主な機能**:
+- ✅ **スラッシュコマンド**: 従来の`.claude/commands/`アーキテクチャ
+- ✅ **Pythonパッケージ**: pipまたはinstall.sh経由でインストール
+- ✅ **27個のコマンド**: 完全なワークフロー自動化
+- ✅ **MCP統合**: オプションのパフォーマンス強化
 
 </div>
 

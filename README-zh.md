@@ -5,7 +5,7 @@
 ### **将Claude Code转换为结构化开发平台**
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-4.1.5-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-4.1.6-blue" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
 </p>
@@ -53,8 +53,10 @@
 
 | **命令数** | **智能体** | **模式** | **MCP服务器** |
 |:------------:|:----------:|:---------:|:---------------:|
-| **21** | **14** | **5** | **6** |
+| **27** | **16** | **7** | **8** |
 | 斜杠命令 | 专业AI | 行为模式 | 集成服务 |
+
+核心工作流：**PM Agent**（编排）、**Research**（网络搜索）、**Index**（上下文优化）、**Analysis**、**Implementation**等。
 
 </div>
 
@@ -68,13 +70,42 @@ SuperClaude是一个**元编程配置框架**，通过行为指令注入和组�
 
 ## ⚡ **快速安装**
 
-### **选择您的安装方式**
+### **当前稳定版本（v4.1.6）**
 
-| 方式 | 命令 | 最适合 |
-|:------:|---------|----------|
-| **🐍 pipx** | `pipx install SuperClaude && pipx upgrade SuperClaude && SuperClaude install` | **✅ 推荐** - Linux/macOS |
-| **📦 pip** | `pip install SuperClaude && pip upgrade SuperClaude && SuperClaude install` | 传统Python环境 |
-| **🌐 npm** | `npm install -g @bifrost_inc/superclaude && superclaude install` | 跨平台，Node.js用户 |
+> **⚠️ 重要提示**: 之前的README描述了一个**尚未可用**的TypeScript插件系统。
+> 这是计划在v5.0中推出的功能。以下说明反映了**实际的v4.1.6安装方法**。
+
+SuperClaude v4.1.6使用通过Python包安装的**斜杠命令**：
+
+```bash
+# 选项1：通过pip安装（推荐）
+pip install superclaude
+
+# 选项2：从源码安装
+git clone https://github.com/SuperClaude-Org/SuperClaude_Framework.git
+cd SuperClaude_Framework
+./install.sh
+
+# 验证安装
+superclaude --version
+```
+
+**安装后**，SuperClaude命令在Claude Code中以`/sc:*`命令的形式可用：
+
+```bash
+# 可用命令（共27个）
+/sc:implement    # 功能实现
+/sc:analyze      # 代码分析
+/sc:test         # 测试工作流
+/sc:research     # 网络研究
+# ... 以及其他23个命令
+```
+
+**主要功能**:
+- ✅ **斜杠命令**: 传统的`.claude/commands/`架构
+- ✅ **Python包**: 通过pip或install.sh安装
+- ✅ **27个命令**: 完整的工作流自动化
+- ✅ **MCP集成**: 可选的性能增强
 
 </div>
 

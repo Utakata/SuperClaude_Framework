@@ -14,7 +14,7 @@
 <a href="https://github.com/SuperClaude-Org/SuperQwen_Framework" target="_blank">
   <img src="https://img.shields.io/badge/Try-SuperQwen_Framework-orange" alt="Try SuperQwen Framework"/>
 </a>
-  <img src="https://img.shields.io/badge/version-4.2.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-4.1.6-blue" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
 </p>
@@ -47,14 +47,15 @@
 </p>
 
 <p align="center">
-  <a href="#-quick-installation">Quick Start</a> •
+  <a href="#-installation">Installation</a> •
   <a href="#-support-the-project">Support</a> •
-  <a href="#-whats-new-in-v4">Features</a> •
   <a href="#-documentation">Docs</a> •
   <a href="#-contributing">Contributing</a>
 </p>
 
 </div>
+
+> **IMPORTANT**: The TypeScript plugin system is not yet available (planned for v5.0). For current installation instructions, see [v4.1.6 Installation](#-installation).
 
 ---
 
@@ -98,117 +99,32 @@ Claude Code is a product built and maintained by [Anthropic](https://www.anthrop
 
 > **💡 Pro Tip**: Claude Code reads these files at session start to ensure consistent, high-quality development aligned with project standards.
 
-## ⚡ **Quick Installation**
+</div>
 
-### **Project-Local Plugin (Recommended)**
+## ⚡ **Installation**
 
-SuperClaude v2.0+ uses **TypeScript plugins** with project-local auto-detection:
+### **Stable Release (Recommended)**
+
+Install the latest stable version from PyPI:
 
 ```bash
-# Clone repository
+pip install superclaude
+```
+
+### **Developer Setup**
+
+For contributing to the project, set up an editable install:
+
+```bash
+# Clone the repository
 git clone https://github.com/SuperClaude-Org/SuperClaude_Framework.git
 cd SuperClaude_Framework
 
-# Start Claude Code in this directory
-claude
-```
-
-**That's it!** `.claude-plugin/` is auto-detected and PM Agent activates on session start.
-
-**Key Features**:
-- ✅ **Zero Install**: No copying, no configuration
-- ✅ **Hot Reload**: Edit TypeScript → Save → Instant reflection
-- ✅ **Auto-Activation**: PM Agent starts automatically (SessionStart hook)
-- ✅ **Safe Development**: Separate sandbox from global Claude Code
-
-### **Enhanced Performance (Optional MCPs)**
-
-For **2-3x faster** execution and **30-50% fewer tokens**, optionally install MCP servers:
-
-```bash
-# Optional MCP servers for enhanced performance (via airis-mcp-gateway):
-# - Serena: Code understanding (2-3x faster)
-# - Sequential: Token-efficient reasoning (30-50% fewer tokens)
-# - Tavily: Web search for Deep Research
-# - Context7: Official documentation lookup
-# - Mindbase: Semantic search across all conversations (optional enhancement)
-
-# Note: Error learning available via built-in ReflexionMemory (no installation required)
-# Mindbase provides semantic search enhancement (requires "recommended" profile)
-# Install MCP servers: https://github.com/agiletec-inc/airis-mcp-gateway
-# See docs/mcp/mcp-integration-policy.md for details
-```
-
-**Performance Comparison:**
-- **Without MCPs**: Fully functional, standard performance ✅
-- **With MCPs**: 2-3x faster, 30-50% fewer tokens ⚡
-
-</div>
-
-<details>
-<summary><b>⚠️ IMPORTANT: Upgrading from SuperClaude V1.x (Slash Commands)</b></summary>
-
-**V2.0 introduces breaking changes - migration from slash commands to TypeScript plugins:**
-
-```bash
-# 1. Remove old slash commands (if installed)
-rm -rf ~/.claude/commands/sc/
-
-# 2. Use new plugin (project-local)
-cd SuperClaude_Framework
-claude  # .claude-plugin/ auto-detected
-```
-
-**What's New in V2.0:**
-- ✅ TypeScript plugins (hot reload support)
-- ✅ Project-local detection (zero install)
-- ✅ Auto-activation via SessionStart hook
-- ✅ 3 core plugins: PM Agent, Research, Index
-- ✅ Confidence-driven workflow (≥90% threshold, Precision/Recall 1.0)
-
-**Migration Notes:**
-- Old: `/sc:pm`, `/sc:research`, `/sc:index-repo` (27 commands)
-- New: `/pm`, `/research`, `/index-repo` (3 plugin commands)
-- Installation: Global `~/.claude/commands/` → Project-local `.claude-plugin/`
-- Just `cd` to project directory and run `claude`
-
-</details>
-
-<details>
-<summary><b>💡 Troubleshooting</b></summary>
-
-**Plugin not loading?**
-```bash
-# Verify you're in the project directory
-pwd  # Should show: /path/to/SuperClaude_Framework
-
-# Check .claude-plugin/ exists
-ls .claude-plugin/plugin.json
-
-# Restart Claude Code in this directory
-claude
-```
-
-**Commands not working (/pm, /research, /index-repo)?**
-- Ensure you started `claude` from the SuperClaude_Framework directory
-- Check for errors in Claude Code output
-- Verify `.claude-plugin/plugin.json` has correct structure
-
-**Hot reload not working?**
-- Edit `.claude-plugin/pm/index.ts`
-- Save file
-- Changes should reflect immediately (no restart needed)
-
-**Development mode (for contributors):**
-```bash
-# Install Python package for testing
+# Install in editable mode with development dependencies
 make install
-make verify
-uv run pytest
 ```
-</details>
 
----
+This will install the package in editable mode and set up all necessary dependencies for development and testing.
 
 <div align="center">
 
@@ -263,187 +179,6 @@ uv run pytest
 | 🌐 **Infrastructure** | Hosting & deployment costs |
 
 > **Note:** No pressure though - the framework stays open source regardless. Just knowing people use and appreciate it is motivating. Contributing code, documentation, or spreading the word helps too! 🙏
-
-</div>
-
----
-
-<div align="center">
-
-## 🎉 **What's New in V2.0**
-
-> *Version 2.0 brings architectural transformation: migration from 27 slash commands to 3 TypeScript plugins with hot reload and auto-activation.*
-
-<table>
-<tr>
-<td width="50%">
-
-### 🤖 **Smarter Agent System**
-**16 specialized agents** with domain expertise:
-- PM Agent ensures continuous learning through systematic documentation
-- Deep Research agent for autonomous web research
-- Security engineer catches real vulnerabilities
-- Frontend architect understands UI patterns
-- Automatic coordination based on context
-- Domain-specific expertise on demand
-
-</td>
-<td width="50%">
-
-### 🔥 **TypeScript Plugins**
-**3 core plugins** with hot reload:
-- **PM Agent**: Confidence-driven orchestration (≥90% threshold)
-- **Research**: Deep web search with adaptive planning
-- **Index**: 94% token reduction (58K → 3K)
-- Auto-activation via SessionStart hook
-- Edit → Save → Instant reflection (no restart)
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 🔧 **MCP Server Integration**
-**8 powerful servers** (via airis-mcp-gateway):
-- **Tavily** → Primary web search (Deep Research)
-- **Serena** → Session persistence & memory
-- **Mindbase** → Cross-session learning (zero-footprint)
-- **Sequential** → Token-efficient reasoning
-- **Context7** → Official documentation lookup
-- **Playwright** → JavaScript-heavy content extraction
-- **Magic** → UI component generation
-- **Chrome DevTools** → Performance analysis
-
-</td>
-<td width="50%">
-
-### 🎯 **Behavioral Modes**
-**7 adaptive modes** for different contexts:
-- **Brainstorming** → Asks right questions
-- **Business Panel** → Multi-expert strategic analysis
-- **Deep Research** → Autonomous web research
-- **Orchestration** → Efficient tool coordination
-- **Token-Efficiency** → 30-50% context savings
-- **Task Management** → Systematic organization
-- **Introspection** → Meta-cognitive analysis
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### ⚡ **Optimized Performance**
-**Smaller framework, bigger projects:**
-- Reduced framework footprint
-- More context for your code
-- Longer conversations possible
-- Complex operations enabled
-
-</td>
-<td width="50%">
-
-### 📚 **Documentation Overhaul**
-**Complete rewrite** for developers:
-- Real examples & use cases
-- Common pitfalls documented
-- Practical workflows included
-- Better navigation structure
-
-</td>
-</tr>
-</table>
-
-</div>
-
----
-
-<div align="center">
-
-## 🔬 **Deep Research Capabilities**
-
-### **Autonomous Web Research Aligned with DR Agent Architecture**
-
-SuperClaude v4.2 introduces comprehensive Deep Research capabilities, enabling autonomous, adaptive, and intelligent web research.
-
-<table>
-<tr>
-<td width="50%">
-
-### 🎯 **Adaptive Planning**
-**Three intelligent strategies:**
-- **Planning-Only**: Direct execution for clear queries
-- **Intent-Planning**: Clarification for ambiguous requests
-- **Unified**: Collaborative plan refinement (default)
-
-</td>
-<td width="50%">
-
-### 🔄 **Multi-Hop Reasoning**
-**Up to 5 iterative searches:**
-- Entity expansion (Paper → Authors → Works)
-- Concept deepening (Topic → Details → Examples)
-- Temporal progression (Current → Historical)
-- Causal chains (Effect → Cause → Prevention)
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 📊 **Quality Scoring**
-**Confidence-based validation:**
-- Source credibility assessment (0.0-1.0)
-- Coverage completeness tracking
-- Synthesis coherence evaluation
-- Minimum threshold: 0.6, Target: 0.8
-
-</td>
-<td width="50%">
-
-### 🧠 **Case-Based Learning**
-**Cross-session intelligence:**
-- Pattern recognition and reuse
-- Strategy optimization over time
-- Successful query formulations saved
-- Performance improvement tracking
-
-</td>
-</tr>
-</table>
-
-### **Research Command Usage**
-
-```bash
-# Basic research with automatic depth
-/research "latest AI developments 2024"
-
-# Controlled research depth (via options in TypeScript)
-/research "quantum computing breakthroughs"  # depth: exhaustive
-
-# Specific strategy selection
-/research "market analysis"  # strategy: planning-only
-
-# Domain-filtered research (Tavily MCP integration)
-/research "React patterns"  # domains: reactjs.org,github.com
-```
-
-### **Research Depth Levels**
-
-| Depth | Sources | Hops | Time | Best For |
-|:-----:|:-------:|:----:|:----:|----------|
-| **Quick** | 5-10 | 1 | ~2min | Quick facts, simple queries |
-| **Standard** | 10-20 | 3 | ~5min | General research (default) |
-| **Deep** | 20-40 | 4 | ~8min | Comprehensive analysis |
-| **Exhaustive** | 40+ | 5 | ~10min | Academic-level research |
-
-### **Integrated Tool Orchestration**
-
-The Deep Research system intelligently coordinates multiple tools:
-- **Tavily MCP**: Primary web search and discovery
-- **Playwright MCP**: Complex content extraction
-- **Sequential MCP**: Multi-step reasoning and synthesis
-- **Serena MCP**: Memory and learning persistence
-- **Context7 MCP**: Technical documentation lookup
 
 </div>
 

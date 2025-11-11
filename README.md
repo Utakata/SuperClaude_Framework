@@ -14,7 +14,7 @@
 <a href="https://github.com/SuperClaude-Org/SuperQwen_Framework" target="_blank">
   <img src="https://img.shields.io/badge/Try-SuperQwen_Framework-orange" alt="Try SuperQwen Framework"/>
 </a>
-  <img src="https://img.shields.io/badge/version-4.2.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-4.1.6-blue" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
 </p>
@@ -104,7 +104,7 @@ Claude Code is a product built and maintained by [Anthropic](https://www.anthrop
 > not yet available (planned for v5.0). For current installation
 > instructions, please follow the steps below for v4.x.
 
-### **Current Stable Version (v4.2.0)**
+### **Current Stable Version (v4.1.6)**
 
 SuperClaude currently uses slash commands.
 
@@ -225,9 +225,9 @@ For **2-3x faster** execution and **30-50% fewer tokens**, optionally install MC
 
 <div align="center">
 
-## 🎉 **What's New in v4.2**
+## 🎉 **What's New in v4.1**
 
-> *Version 4.2 focuses on stabilizing the slash command architecture, enhancing agent capabilities, and improving documentation.*
+> *Version 4.1 focuses on stabilizing the slash command architecture, enhancing agent capabilities, and improving documentation.*
 
 <table>
 <tr>

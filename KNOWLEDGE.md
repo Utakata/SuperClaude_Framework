@@ -5,7 +5,7 @@
 > This document captures lessons learned, common pitfalls, and solutions discovered during development.
 > Consult this when encountering issues or learning project patterns.
 
-**Last Updated**: 2025-11-12
+**Last Updated**: 2025-11-15 (Added Pitfall 6: MCP Gateway Installation Failure - Issue #457)
 
 ---
 
@@ -197,6 +197,65 @@ python -m pytest
 ```
 
 **Prevention**: Document UV requirement in README
+
+---
+
+### **Pitfall 6: MCP Gateway Installation Failure**
+
+**Problem**: Installing `airis-mcp-gateway` fails with errors like:
+- `Failed to install MCP server`
+- `Failed to resolve --with requirement ╰─▶ Git operation failed`
+
+**Root Cause**: The `airis-mcp-gateway` repository lacks `pyproject.toml` or `setup.py` files, causing standard pip/uv installations to fail.
+
+**Timeline**:
+- First reported: 2024-10-29 by movax (Issue #457)
+- Still occurring: 2024-11-16 in v4.1.9 (reported by luannanxian)
+- Status: 🔴 Active - Resolution pending in PR #459
+
+**Context**:
+This issue emerged during a major refactoring of SuperClaude_Framework (PR #459), which includes:
+- Removing duplicate `.md` document loading (~50k token reduction)
+- Adding plugin hot-reload functionality
+- Upgrading PM Agent to "Super Agent Mode"
+- New features: Deep Research Mode, Index-Repo Mode
+- Intentional removal of some legacy commands
+
+**Current Solutions**:
+
+1. **Use the `next` branch** (recommended by Kazuki Nakai, 2024-10-29):
+   ```bash
+   # Clone Kazuki Nakai's fork with next branch
+   git clone -b next https://github.com/kazukinakai/SuperClaude_Framework.git
+   cd SuperClaude_Framework
+
+   # Follow installation instructions for next branch
+   # (Note: Official plugin repository also needs to be on next branch)
+   ```
+
+2. **Fallback to legacy method** (being validated by Mithun Gowda B, 2024-11-15):
+   ```bash
+   # Legacy installation approach
+   # Exact commands pending official documentation
+   # See Issue #457 for latest updates
+   ```
+
+**Alternative**: Wait for PR #459 to merge and issue to be officially resolved.
+
+**Prevention**:
+- Check Issue #457 status: https://github.com/SuperClaude-Org/SuperClaude_Framework/issues/457
+- Monitor PR #459 progress: https://github.com/SuperClaude-Org/SuperClaude_Framework/pull/459
+- Use `next` branch for early access to fixes
+
+**References**:
+- Issue #457: "Airis MCPに関する混乱"
+- PR #459: SuperClaude_Framework major refactoring
+- Kazuki Nakai's fork: https://github.com/kazukinakai/SuperClaude_Framework
+- Reported by: movax, luannanxian
+- Investigated by: Mithun Gowda B
+
+**Last Updated**: 2025-11-15 (Auto-detected by Project Health Coordinator)
+**Next Review**: When PR #459 merges to master
 
 ---
 

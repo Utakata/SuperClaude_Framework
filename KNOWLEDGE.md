@@ -5,7 +5,7 @@
 > This document captures lessons learned, common pitfalls, and solutions discovered during development.
 > Consult this when encountering issues or learning project patterns.
 
-**Last Updated**: 2025-11-15 (Added Pitfall 6: MCP Gateway Installation Failure - Issue #457)
+**Last Updated**: 2025-11-16 (Updated Pitfall 6 with official solution from Kazuki Nakai)
 
 ---
 
@@ -210,8 +210,11 @@ python -m pytest
 
 **Timeline**:
 - First reported: 2024-10-29 by movax (Issue #457)
-- Still occurring: 2024-11-16 in v4.1.9 (reported by luannanxian)
-- Status: 🔴 Active - Resolution pending in PR #459
+- Investigation: 2024-10-29 - movax identified missing pyproject.toml/setup.py
+- Still occurring: 2024-11-10 (movax), 2024-11-16 (luannanxian in v4.1.9)
+- Fallback attempt: 2024-11-15 by Mithun Gowda B
+- ✅ **Official solution provided**: 2024-11-16 by Kazuki Nakai
+- Status: 🟢 Resolved - Manual installation method available
 
 **Context**:
 This issue emerged during a major refactoring of SuperClaude_Framework (PR #459), which includes:
@@ -221,9 +224,28 @@ This issue emerged during a major refactoring of SuperClaude_Framework (PR #459)
 - New features: Deep Research Mode, Index-Repo Mode
 - Intentional removal of some legacy commands
 
-**Current Solutions**:
+**Solutions**:
 
-1. **Use the `next` branch** (recommended by Kazuki Nakai, 2024-10-29):
+1. **✅ Official Solution** (updated 2024-11-16 by Kazuki Nakai):
+
+   The correct repository is `agiletec-inc/airis-mcp-gateway` (not `oraios/airis-mcp-gateway`).
+
+   **For Claude Code users**:
+   ```bash
+   # 1. Start Gateway
+   git clone https://github.com/agiletec-inc/airis-mcp-gateway.git
+   cd airis-mcp-gateway
+   just up
+
+   # 2. Connect to Claude Code
+   claude mcp add --transport http airis-mcp-gateway http://api.gateway.localhost:9400/api/v1/mcp
+   ```
+
+   **References**:
+   - [MCP Server Guide](https://github.com/SuperClaude-Org/SuperClaude_Framework/blob/main/docs/Reference/mcp-server-guide.md)
+   - [airis-mcp-gateway README](https://github.com/agiletec-inc/airis-mcp-gateway)
+
+2. **Alternative: Use `next` branch** (for framework development, 2024-10-29):
    ```bash
    # Clone Kazuki Nakai's fork with next branch
    git clone -b next https://github.com/kazukinakai/SuperClaude_Framework.git
@@ -233,14 +255,7 @@ This issue emerged during a major refactoring of SuperClaude_Framework (PR #459)
    # (Note: Official plugin repository also needs to be on next branch)
    ```
 
-2. **Fallback to legacy method** (being validated by Mithun Gowda B, 2024-11-15):
-   ```bash
-   # Legacy installation approach
-   # Exact commands pending official documentation
-   # See Issue #457 for latest updates
-   ```
-
-**Alternative**: Wait for PR #459 to merge and issue to be officially resolved.
+3. **Wait for PR #459**: Major refactoring will include improved installation workflow.
 
 **Prevention**:
 - Check Issue #457 status: https://github.com/SuperClaude-Org/SuperClaude_Framework/issues/457
@@ -254,8 +269,9 @@ This issue emerged during a major refactoring of SuperClaude_Framework (PR #459)
 - Reported by: movax, luannanxian
 - Investigated by: Mithun Gowda B
 
-**Last Updated**: 2025-11-15 (Auto-detected by Project Health Coordinator)
-**Next Review**: When PR #459 merges to master
+**Last Updated**: 2025-11-16 (Added official solution from Kazuki Nakai)
+**Status**: ✅ Resolved (manual installation method available)
+**Next Review**: When PR #459 merges with automated installation
 
 ---
 
